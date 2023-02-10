@@ -250,8 +250,6 @@ If you're interested in compilers, and interpreters, generally you might enjoy t
   * A simple TCL interpreter
 * https://github.com/skx/foth
   * A tutorial-based implementation of a FORTH scripting language.
-* https://github.com/skx/bfcc
-  * A [brainfuck](https://en.wikipedia.org/wiki/Brainfuck) compiler
 * https://github.com/skx/math-compiler
   * A simple compiler for mathematical expressions.
 
