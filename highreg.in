@@ -1,0 +1,23 @@
+store #255, "Hello, World!\n"
+#print_str #255
+#store #9, 0xFFFF
+#store #8, "\r"
+#print_int #9
+#print_str #8
+#:main
+#dec #9
+##print_int #9
+#store #6, #9
+#int2string #6
+#print_str #6
+#print_str #8
+#cmp #9, 0
+#jmpz end
+#jmp main
+#:end
+#exit
+store #1, 0
+store #0, 0
+or #2, #0, #1
+int2string #2
+print_str #2

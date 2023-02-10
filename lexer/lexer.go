@@ -2,7 +2,7 @@
 package lexer
 
 import (
-	"github.com/skx/go.vm/token"
+	"github.com/coolcoder613eb/go.vm/token"
 )
 
 // Lexer is used as a lexer for our VM

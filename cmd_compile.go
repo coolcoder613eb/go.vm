@@ -8,17 +8,15 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/coolcoder613eb/go.vm/compiler"
+	"github.com/coolcoder613eb/go.vm/lexer"
 	"github.com/google/subcommands"
-	"github.com/skx/go.vm/compiler"
-	"github.com/skx/go.vm/lexer"
 )
 
 type compileCmd struct {
 }
 
-//
 // Glue
-//
 func (*compileCmd) Name() string     { return "compile" }
 func (*compileCmd) Synopsis() string { return "Compile a simple.vm program." }
 func (*compileCmd) Usage() string {
@@ -27,15 +25,11 @@ func (*compileCmd) Usage() string {
 `
 }
 
-//
 // Flag setup: no flags
-//
 func (p *compileCmd) SetFlags(f *flag.FlagSet) {
 }
 
-//
 // Entry-point.
-//
 func (p *compileCmd) Execute(_ context.Context, f *flag.FlagSet, _ ...interface{}) subcommands.ExitStatus {
 
 	//

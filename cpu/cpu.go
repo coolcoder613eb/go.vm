@@ -3,7 +3,6 @@
 // We should probably use the constants defined in `opcodes/opcodes.go`
 // instead of the literal hex-constants for our bytecode, but that's a minor
 // issue.
-//
 package cpu
 
 import (
@@ -18,7 +17,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/skx/go.vm/opcode"
+	"github.com/coolcoder613eb/go.vm/opcode"
 )
 
 // Flags holds the CPU flags - of which we only have one.
@@ -30,7 +29,7 @@ type Flags struct {
 // CPU is our virtual machine state.
 type CPU struct {
 	// Registers
-	regs [15]*Register
+	regs [256]*Register //////////////////////////////////////
 
 	// Flags
 	flags Flags
@@ -753,7 +752,7 @@ func (c *CPU) Run() error {
 			// next instruction
 			c.ip++
 
-		case opcode.CMP_REG:
+		case opcode.CMP_REG: ////////////////////////////////
 			c.ip++
 			r1 := int(c.mem[c.ip])
 			c.ip++
@@ -889,6 +888,53 @@ func (c *CPU) Run() error {
 				c.flags.z = true
 			} else {
 				c.flags.z = false
+			}
+
+		case opcode.IS_MORE_REG:
+			c.ip++
+			r1 := int(c.mem[c.ip])
+			c.ip++
+			r2 := int(c.mem[c.ip])
+			c.ip++
+
+			if int(r1) >= len(c.regs) {
+				return fmt.Errorf("register %d out of range", r1)
+			}
+			if int(r2) >= len(c.regs) {
+				return fmt.Errorf("register %d out of range", r2)
+			}
+
+			c.flags.z = false
+
+			switch c.regs[r1].Type() {
+			case "int":
+
+				aVal, aErr := c.regs[r1].GetInt()
+				if aErr != nil {
+					return aErr
+				}
+				bVal, bErr := c.regs[r2].GetInt()
+				if bErr != nil {
+					return bErr
+				}
+
+				if aVal > bVal {
+					c.flags.z = true
+				}
+			case "string":
+
+				aVal, aErr := c.regs[r1].GetString()
+				if aErr != nil {
+					return aErr
+				}
+				bVal, bErr := c.regs[r2].GetString()
+				if bErr != nil {
+					return bErr
+				}
+
+				if aVal > bVal {
+					c.flags.z = true
+				}
 			}
 
 		case opcode.NOP_OP:

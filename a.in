@@ -1,0 +1,13 @@
+store #1, "1"
+is_integer #1
+jmpz ok
+jmpnz bad
+exit
+:ok
+    store #9, "OK\n"
+    print_str #9
+    exit
+:bad
+    store #9, "bad\n"
+    print_str #9
+    exit

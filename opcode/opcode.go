@@ -83,6 +83,9 @@ var (
 	// IS_INTEGER tests if a register contains an integer.
 	IS_INTEGER = 0x44
 
+	// IS_MORE_REG compares reg1 > reg2.
+	IS_MORE_REG = 0x45
+
 	// NOP_OP does nothing.
 	NOP_OP = 0x50
 
@@ -187,6 +190,8 @@ func (o *Opcode) String() string {
 		return "IS_STRING"
 	case IS_INTEGER:
 		return "IS_INTEGER"
+	case IS_MORE_REG:
+		return "IS_MORE_REG"
 	case NOP_OP:
 		return "NOP"
 	case REG_STORE:

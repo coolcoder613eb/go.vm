@@ -1,4 +1,4 @@
-module github.com/skx/go.vm
+module github.com/coolcoder613eb/go.vm
 
 go 1.12
 

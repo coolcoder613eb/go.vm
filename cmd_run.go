@@ -6,18 +6,16 @@ import (
 	"fmt"
 	"io/ioutil"
 
+	"github.com/coolcoder613eb/go.vm/compiler"
+	"github.com/coolcoder613eb/go.vm/cpu"
+	"github.com/coolcoder613eb/go.vm/lexer"
 	"github.com/google/subcommands"
-	"github.com/skx/go.vm/compiler"
-	"github.com/skx/go.vm/cpu"
-	"github.com/skx/go.vm/lexer"
 )
 
 type runCmd struct {
 }
 
-//
 // Glue
-//
 func (*runCmd) Name() string     { return "run" }
 func (*runCmd) Synopsis() string { return "Run the given source program." }
 func (*runCmd) Usage() string {
@@ -27,15 +25,11 @@ func (*runCmd) Usage() string {
 `
 }
 
-//
 // Flag setup: no flags
-//
 func (p *runCmd) SetFlags(f *flag.FlagSet) {
 }
 
-//
 // Entry-point.
-//
 func (p *runCmd) Execute(_ context.Context, f *flag.FlagSet, _ ...interface{}) subcommands.ExitStatus {
 
 	//

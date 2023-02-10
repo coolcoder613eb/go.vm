@@ -49,7 +49,8 @@ const (
 	INT2STRING = "INT2STRING"
 
 	// compare
-	CMP = "CMP"
+	CMP         = "CMP"
+	IS_MORE_REG = "IS_MORE"
 
 	// store
 	STORE = "STORE"
@@ -78,7 +79,8 @@ const (
 var keywords = map[string]Type{
 
 	// compare
-	"cmp": CMP,
+	"cmp":     CMP,
+	"is_more": IS_MORE_REG,
 
 	// types
 	"is_integer": IS_INTEGER,

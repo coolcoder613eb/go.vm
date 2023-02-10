@@ -5,16 +5,14 @@ import (
 	"flag"
 	"fmt"
 
+	"github.com/coolcoder613eb/go.vm/cpu"
 	"github.com/google/subcommands"
-	"github.com/skx/go.vm/cpu"
 )
 
 type executeCmd struct {
 }
 
-//
 // Glue
-//
 func (*executeCmd) Name() string     { return "execute" }
 func (*executeCmd) Synopsis() string { return "Executed a compiled program." }
 func (*executeCmd) Usage() string {
@@ -23,15 +21,11 @@ func (*executeCmd) Usage() string {
 `
 }
 
-//
 // Flag setup: no flags
-//
 func (p *executeCmd) SetFlags(f *flag.FlagSet) {
 }
 
-//
 // Entry-point.
-//
 func (p *executeCmd) Execute(_ context.Context, f *flag.FlagSet, _ ...interface{}) subcommands.ExitStatus {
 
 	//

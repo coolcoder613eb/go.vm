@@ -12,8 +12,6 @@
 // Compiler object - the former keeps track of offsets in our generated
 // bytecodes that need to be patched with the address/offset of a given
 // label, and the latter lets us record the offset at which labels were seen.
-//
-//
 package compiler
 
 import (
@@ -23,9 +21,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/skx/go.vm/lexer"
-	"github.com/skx/go.vm/opcode"
-	"github.com/skx/go.vm/token"
+	"github.com/coolcoder613eb/go.vm/lexer"
+	"github.com/coolcoder613eb/go.vm/opcode"
+	"github.com/coolcoder613eb/go.vm/token"
 )
 
 // Compiler contains our compiler-state
@@ -71,7 +69,7 @@ func (p *Compiler) getRegister(input string) byte {
 		panic(err)
 	}
 
-	if (i >= 0) && (i <= 15) {
+	if (i >= 0) && (i <= 256) { //////////////////////////////////////
 		return byte(i)
 	}
 
@@ -131,6 +129,9 @@ func (p *Compiler) Compile() {
 
 		case token.IS_STRING:
 			p.isStrOp()
+
+		case token.IS_MORE_REG:
+			p.isMoreOp()
 
 		case token.STRING2INT:
 			p.str2IntOp()
@@ -745,6 +746,43 @@ func (p *Compiler) cmpOp() {
 			// output two temporary numbers
 			p.bytecode = append(p.bytecode, byte(0))
 			p.bytecode = append(p.bytecode, byte(0))
+		}
+	default:
+		fmt.Printf("ERROR: Invalid thing to store: %v\n", p.curToken)
+		os.Exit(1)
+	}
+}
+
+// cmpOp handles comparing a register with a string, integer, or register,
+// or label-address.
+func (p *Compiler) isMoreOp() { ///////////////////
+
+	// We're looking for an identifier next.
+	if !p.expectPeek(token.IDENT) {
+		return
+	}
+
+	// Save the register we're storing to.
+	reg := p.getRegister(p.curToken.Literal)
+
+	if !p.expectPeek(token.COMMA) {
+		return
+	}
+	p.nextToken()
+
+	// Now we know what source register we're comparing we need to see
+	// if that comparison is with a string, integer, register value, or a
+	// label address.
+	switch p.curToken.Type {
+	case token.IDENT:
+		if p.isRegister(p.curToken.Literal) {
+			// CMP_REG REG_DST REG_SRC
+			p.bytecode = append(p.bytecode, byte(opcode.IS_MORE_REG))
+			p.bytecode = append(p.bytecode, reg)
+			p.bytecode = append(p.bytecode, p.getRegister(p.curToken.Literal))
+		} else {
+			fmt.Printf("ERROR: Invalid thing to store: %v\n", p.curToken)
+			os.Exit(1)
 		}
 	default:
 		fmt.Printf("ERROR: Invalid thing to store: %v\n", p.curToken)

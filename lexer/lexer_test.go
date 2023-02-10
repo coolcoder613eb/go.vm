@@ -3,7 +3,7 @@ package lexer
 import (
 	"testing"
 
-	"github.com/skx/go.vm/token"
+	"github.com/coolcoder613eb/go.vm/token"
 )
 
 func TestNextTokenTrivial(t *testing.T) {

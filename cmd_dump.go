@@ -6,17 +6,15 @@ import (
 	"fmt"
 	"io/ioutil"
 
+	"github.com/coolcoder613eb/go.vm/compiler"
+	"github.com/coolcoder613eb/go.vm/lexer"
 	"github.com/google/subcommands"
-	"github.com/skx/go.vm/compiler"
-	"github.com/skx/go.vm/lexer"
 )
 
 type dumpCmd struct {
 }
 
-//
 // Glue
-//
 func (*dumpCmd) Name() string     { return "dump" }
 func (*dumpCmd) Synopsis() string { return "Show the lexed output of the given program." }
 func (*dumpCmd) Usage() string {
@@ -26,15 +24,11 @@ func (*dumpCmd) Usage() string {
 `
 }
 
-//
 // Flag setup: no flags
-//
 func (p *dumpCmd) SetFlags(f *flag.FlagSet) {
 }
 
-//
 // Entry-point.
-//
 func (p *dumpCmd) Execute(_ context.Context, f *flag.FlagSet, _ ...interface{}) subcommands.ExitStatus {
 
 	//

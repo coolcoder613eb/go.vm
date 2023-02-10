@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/skx/go.vm/opcode"
+	"github.com/coolcoder613eb/go.vm/opcode"
 )
 
 // TestTimeout tests that we can catch infinite loops.

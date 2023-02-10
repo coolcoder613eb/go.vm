@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/skx/go.vm/opcode"
+	"github.com/coolcoder613eb/go.vm/opcode"
 )
 
 // TestTraps will test the simple traps we have
