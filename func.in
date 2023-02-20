@@ -1,0 +1,19 @@
+jmp _start
+
+:add
+pop #1
+pop #2
+ret
+
+
+:_start
+#; arg 2: 1
+store #0, 1
+push #0
+#; arg 1: 3
+store #0, 3
+push #0
+#; number of args: 2
+store #0, 2
+push #0
+call add
