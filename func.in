@@ -1,19 +1,28 @@
 jmp _start
 
 :add
-pop #1
-pop #2
+    pop #1
+    pop #2
+    add #0, #1, #2
 ret
 
 
 :_start
-#; arg 2: 1
-store #0, 1
-push #0
-#; arg 1: 3
-store #0, 3
-push #0
-#; number of args: 2
-store #0, 2
-push #0
-call add
+    # print(str(add(1,3)))
+    #           ^^^^^^^^
+        # arg 2: 1
+        store #0, 1
+        push #0
+        # arg 1: 3
+        store #0, 3
+        push #0
+        call add
+    # return value is in #0
+    # 
+    # print(str(add(1,3)))
+    #       ^^^^        ^
+    int2string #0
+    
+    print_str #0
+    # print(str(add(1,3)))
+    # ^^^^^^             ^
