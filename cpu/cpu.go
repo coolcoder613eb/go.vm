@@ -207,6 +207,8 @@ func (c *CPU) Run() error {
 			// nop
 		}
 
+		//fmt.Printf("opcode %02X at IP %04X\n", op.Value(), c.ip)
+
 		switch int(op.Value()) {
 		case opcode.EXIT:
 			run = false
@@ -1175,6 +1177,7 @@ func (c *CPU) Run() error {
 		default:
 			return fmt.Errorf("unrecognized/Unimplemented opcode %02X at IP %04X", op.Value(), c.ip)
 		}
+		//fmt.Println(c.stack.entries)
 
 		// Ensure our instruction-pointer wraps around.
 		if c.ip > 0xFFFF {

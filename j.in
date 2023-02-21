@@ -1,0 +1,8 @@
+jmp hi
+
+:hi
+    store #0, "Hello, World!"
+    print_str #0
+    store #0, 1
+    int2string #0
+    print_str #0
