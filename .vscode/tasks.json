@@ -10,8 +10,19 @@
             "problemMatcher": [],
             "group": {
                 "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            "label": "Build codon embed",
+            "type": "shell",
+            "command": "codon build embed.codon -o codon-embed",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
                 "isDefault": true
             }
         }
+
     ]
 }
