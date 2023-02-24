@@ -122,6 +122,8 @@ func (c *CPU) LoadBytes(data []byte) {
 	// Ensure we reset our state.
 	c.Reset()
 
+	fmt.Println(len(data))
+
 	if len(data) >= 0xFFFF {
 		fmt.Printf("Program too large for RAM!\n")
 		os.Exit(1)

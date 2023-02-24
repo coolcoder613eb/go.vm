@@ -1,11 +1,12 @@
-GO_VM = "/home/coolcoder613/Repos/go.vm/libgo.vm.so"
+GO_VM = "./libgo.vm.so"
 from C import uint8_t, int64_t as GoUint8, GoInt
-from python import ctypes
-from python import builtins
+#from python import ctypes
+#from python import builtins
 
 @tuple
 class GoSlice:
-    data: __array__[None]
+    #data: __array__[None]
+    data: Array[byte]
     len: int
     cap: int
 
@@ -19,18 +20,24 @@ def to_GoSlice(code: str):
 
 
 code = '0\x00\r\x00Hello, World!1\x00'
+length: Static[int] = 19
 a = list(code)
-length = len(a)
+#length = len(a)
 #length: Static[int] = len(a)
-b = List[byte](length)
+#b = List[byte](length)
 #b = len(a)
-#for x in a:
-#    b.append(bytes(code,'utf-8'))
+c = __array__[byte](length)
+for x,item in enumerate(a):
+    c[x] = byte(item)
 #c = b
-codearr = ctypes.c_char * length
+#codearr = ctypes.c_char * length
 
-c = codearr(*builtins.tuple(builtins.bytes(code,'utf-8')))
+
+#c = codearr(*tuple(builtins.bytes(code,'utf-8')))
+#c = tuple(builtins.bytes(code,'utf-8'))[0]
 print(a)
-print(b)
-print(type(b))
+#print(b)
+#print(type(b))
+#print(c)
 the_slice = GoSlice(c,length,length)
+RunCode(the_slice)
