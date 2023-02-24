@@ -63548,7 +63548,30 @@
     store #0, ">"
     print_str #0
     int 0x01
-    # int 0x02
+    int 0x02
+    is_integer #0
+
+    # case "ls":
+    cmp #0, "ls"
+    jmpz ls_cmd
+
+    # case _:
     print_str #0
+    jmp end_case
+
+    :ls_cmd
+    store #0, "a_file\nanother_file\n"
+    print_str #0
+    jmp end_case
+
+
+    :end_case
 
     jmp shell_loop
+
+exit
+
+# :clear_z
+#     store #255, 0
+#     cmp #255, 1
+#     ret
