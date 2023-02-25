@@ -63556,6 +63556,8 @@
     jmpz ls_cmd
 
     # case _:
+    store #1, "\n"
+    concat #0, #0, #1
     print_str #0
     jmp end_case
 
