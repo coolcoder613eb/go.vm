@@ -23,7 +23,7 @@ func RunCode(code []byte) (success bool) { //code *C.char
 	// 	fmt.Print(arr[x], ",")
 	// }
 	// fmt.Println("")
-	fmt.Println(arr)
+	//fmt.Println(arr)
 	c := cpu.NewCPU()
 	oout := os.Stdout
 	os.Stdout, _ = os.Open(os.DevNull)

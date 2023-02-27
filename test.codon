@@ -1,0 +1,5 @@
+import sys
+#print(sys.stdin.readlines())
+for x in sys.stdin:
+    print([x[:-1]])
+    break
