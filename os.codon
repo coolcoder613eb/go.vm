@@ -1,5 +1,12 @@
 #from python import embed.run_code(str) -> None
 from python import builtins.input(str) -> str
+from python import shlex.split(str) -> List[str]
+#import sys
+#def input(prompt=''):
+#   print(prompt,end='')
+#   for x in sys.stdin:
+#      return x[:-1]
+#      break
 #import embed
 @python
 def run_code(code):
@@ -18,5 +25,18 @@ run_code(code)
 
 power = True
 while power:
-    #input('>')
-    pass
+   try:
+      cmd = input('>')
+      argv = split(cmd)
+      argc = len(argv)
+
+      match argv[0]:
+         case 'run':
+            if argc > 1:
+               with open(argv[1])
+            else:
+               print("Specify a program!")
+         case _:
+            print(f'"{cmd}" is not a command!')
+   except PyError:
+      power = False
