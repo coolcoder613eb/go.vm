@@ -6,7 +6,7 @@ from C import uint8_t, int64_t as GoUint8, GoInt
 @tuple
 class GoSlice:
     #data: __array__[None]
-    data: cobj #Ptr[byte]
+    data: Ptr[byte]
     len: int
     cap: int
 
@@ -43,4 +43,5 @@ length = len(code)
 #print(str(code_c))
 the_slice = GoSlice(code_c,length,length)
 print(str(the_slice))
-RunCode(the_slice)
+#a: int = code_c
+#RunCode(the_slice)
