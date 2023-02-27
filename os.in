@@ -63555,6 +63555,10 @@
     cmp #0, "ls"
     jmpz ls_cmd
 
+    # case "exit":
+    cmp #0, "exit"
+    jmpz exit_cmd
+
     # case _:
     store #1, "\n"
     concat #0, #0, #1
@@ -63562,9 +63566,13 @@
     jmp end_case
 
     :ls_cmd
-    store #0, "a_file\nanother_file\n"
-    print_str #0
-    jmp end_case
+        store #0, "a_file\nanother_file\n"
+        print_str #0
+        jmp end_case
+    
+    :exit_cmd
+        exit
+        jmp end_case
 
 
     :end_case

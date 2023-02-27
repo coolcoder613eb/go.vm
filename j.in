@@ -1,2 +1,2 @@
-store #256, "Hello, World!"
-print_str #256
+store #0, "Hello, World!"
+print_str #0

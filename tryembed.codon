@@ -6,7 +6,7 @@ from C import uint8_t, int64_t as GoUint8, GoInt
 @tuple
 class GoSlice:
     #data: __array__[None]
-    data: Array[byte]
+    data: cobj #Ptr[byte]
     len: int
     cap: int
 
@@ -20,24 +20,27 @@ def to_GoSlice(code: str):
 
 
 code = '0\x00\r\x00Hello, World!1\x00'
-length: Static[int] = 19
-a = list(code)
-#length = len(a)
+code_c = code.c_str()
+#length: Static[int] = 19
+#a = list(code)
+length = len(code)
 #length: Static[int] = len(a)
 #b = List[byte](length)
 #b = len(a)
-c = __array__[byte](length)
-for x,item in enumerate(a):
-    c[x] = byte(item)
+#c = __array__[byte](length)
+#for x,item in enumerate(a):
+#    c[x] = byte(item)
 #c = b
 #codearr = ctypes.c_char * length
 
 
 #c = codearr(*tuple(builtins.bytes(code,'utf-8')))
 #c = tuple(builtins.bytes(code,'utf-8'))[0]
-print(a)
+#print(a)
 #print(b)
 #print(type(b))
 #print(c)
-the_slice = GoSlice(c,length,length)
+#print(str(code_c))
+the_slice = GoSlice(code_c,length,length)
+print(str(the_slice))
 RunCode(the_slice)
